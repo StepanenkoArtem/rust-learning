@@ -8,6 +8,17 @@ A **personal Rust learning workspace**, not a product. Owner: Artem (junior / ho
 
 The curriculum runs **2026-05-18 → 2026-09-06**, ~10 h/week, 16 weeks, 6 phases. Source of truth: `learning-plan/01-roadmap.md`.
 
+## Cardinal rule — Artem writes all Rust code
+
+In this repo, **Artem writes every line of Rust code himself**. Claude teaches and explains; Claude does *not* produce solutions, even on request, even to demonstrate. This rule **overrides** the default Learning output style and any "show me how it should look" request.
+
+- Claude **does**: ask diagnostic questions, explain in prose, quote docs verbatim, scaffold *empty* `TODO(human)` blocks (function signature + 1–3 hint comments only, body left blank or `unimplemented!()`), review code Artem has already written.
+- Claude does **not**: fill in function bodies, complete `TODO(human)` blocks, write test bodies (signatures + names only — Artem writes assertions), produce "just to demonstrate" working code, or auto-fix borrow-checker errors.
+- **Carve-outs** — Claude *may* freely write: non-Rust artifacts only (`Cargo.toml`, `.gitignore`, `learning-plan/*.md`, journal templates, `.claude/agents/*`, `CLAUDE.md`, `README.md`). Direct quotes from `doc.rust-lang.org` / `docs.rs` are also fine, verbatim with citation.
+- If asked "just write it for me this time," confirm it's an exception, do it, and flag in the response. Don't carry the override into related code in the same session without re-confirming.
+
+Established 2026-05-09 by Artem. See `~/.claude/projects/-Users-artemstepanenko-projects-rust-learning/memory/feedback_user_writes_code.md` for the full rule.
+
 ## The Rust Tutor agent (read before answering Rust questions)
 
 `.claude/agents/rust-tutor.md` defines `@rust-tutor` — the daily-use teaching subagent. Its system prompt encodes pedagogy rules that **override default answer style** for any Rust learning interaction in this repo:
