@@ -17,7 +17,7 @@
 8. **The Rust Performance Book** — https://nnethercote.github.io/perf-book/
 
 ## Interactive / video
-- **Rustlings** — https://github.com/rust-lang/rustlings — small fix-this-code exercises. Do alongside the Book.
+- **Rustlings** — embedded in this repo at `./rustlings/` (gitignored, local-only). Drive via `cd rustlings && rustlings watch`. Do **in lockstep** with the Book — finish Book §X.Y → run the matching exercise set → don't advance until it passes. Set up with `cargo install rustlings && cd /tmp && rustlings init && mv /tmp/rustlings ~/projects/rust-learning/rustlings` (init refuses inside an existing Cargo project; staging via `/tmp` is the fix). Upstream: https://github.com/rust-lang/rustlings.
 - **Jon Gjengset — "Crust of Rust"** YouTube series — deep streams on iterators, lifetimes, async, atomics. *Best for after you've read each topic in the Book.*
 - **Let's Get Rusty** YouTube — short, beginner-friendly explainers. Skip if Jon's pace works.
 - **Exercism — Rust track** — https://exercism.org/tracks/rust — gentler ramp than Codewars; mentor reviews are gold.

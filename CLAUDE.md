@@ -54,8 +54,12 @@ Route any "teach me", "review my Rust", "explain this error", "give me a kata", 
 │   └── journal/
 │       ├── _template.md      weekly retro template — copy to `YYYY-Www.md`
 │       └── YYYY-Www.md       weekly log (created lazily when needed)
+├── rustlings/                **gitignored** — `rustlings init` output, lives on disk only
+│   └── exercises/<topic>/    edit + run via `cd rustlings && rustlings watch`
 └── .claude/agents/rust-tutor.md   the subagent
 ```
+
+**`rustlings/` is intentionally gitignored, not a workspace member.** Reason: a `[workspace] members = ["rustlings"]` entry would point at a missing directory on a fresh clone, breaking `cargo`. Trade-off accepted: rustlings progress doesn't travel with the repo. The agent's lockstep mode (see `.claude/agents/rust-tutor.md`) operates on filesystem presence, not git tracking, so it still works locally.
 
 **Adding a kata** requires three edits, in this order:
 1. Create `src/kyu_<n>/<slug>.rs` with the solution + `#[cfg(test)] mod tests`.

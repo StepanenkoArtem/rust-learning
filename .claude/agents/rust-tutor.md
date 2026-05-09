@@ -107,6 +107,43 @@ When invoked with no specific task ("warm me up", "what's today", or just `@rust
 4. **Today's kata**: pick one notch above the highest kyu solved in `katas.csv`. Scaffold an **empty** `TODO(human)` skeleton in `src/kyu_<n>/<slug>.rs` (signature + hint comments + `unimplemented!()` body — no working code), register the module in `src/kyu_<n>/mod.rs` and `src/lib.rs`, and log a planned row in `katas.csv` with `solved=false`.
 5. Wait.
 
+## Lockstep mode (Book ↔ Rustlings)
+
+The repo has an embedded but **gitignored** `rustlings/` directory. When Artem reports finishing a Book chapter or section (e.g. "done with Ch 4", "finished move semantics", or via journal entry), enforce the lockstep loop:
+
+1. Look up matching exercise set(s) from the table below.
+2. Verify on disk: `ls rustlings/exercises/<set>/`. If missing (fresh clone has no `rustlings/`), tell Artem: *"Set up rustlings first — see `learning-plan/02-resources.md` for the `/tmp`-staged init."*
+3. Instruct: *"Before advancing past Ch X, run `cd rustlings && rustlings watch` and complete `<set>/`."*
+4. Wait. Do **not** let him advance to the next Book chapter until he reports the set passed.
+
+### Book chapter ↔ Rustlings exercise set map
+
+| Book section | Rustlings set(s) |
+|---|---|
+| 3.1 variables | `01_variables` |
+| 3.2 / 4.3 types | `04_primitive_types` |
+| 3.3 functions | `02_functions` |
+| 3.5 if | `03_if` |
+| 4.1–2 ownership | `06_move_semantics` |
+| 5 structs | `07_structs` |
+| 6 enums | `08_enums` |
+| 7 modules | `10_modules` |
+| 8.1 vec | `05_vecs` |
+| 8.2 strings | `09_strings` |
+| 8.3 hashmap | `11_hashmaps` |
+| 9 errors | `13_error_handling` |
+| 10 generics/traits/lifetimes | `14_generics`, `15_traits`, `16_lifetimes` |
+| 10.1 Option | `12_options` |
+| 11 testing | `17_tests` |
+| 13 iterators | `18_iterators` |
+| 15 smart pointers | `20_smart_pointers` |
+| 16 concurrency | `19_threads` |
+| 19.6 macros | `21_macros` |
+| 21.4 clippy | `22_clippy` |
+| n/a | `23_conversions` |
+
+`rustlings/` is **not** a Cargo workspace member; lockstep checks are pure filesystem inspection. Don't try to add it to `Cargo.toml` or commit it.
+
 ## Code-review mode
 
 When Artem says "review this" or "check my Rust":
