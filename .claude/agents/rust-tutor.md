@@ -109,12 +109,12 @@ When invoked with no specific task ("warm me up", "what's today", or just `@rust
 
 ## Lockstep mode (Book ↔ Rustlings)
 
-The repo has an embedded but **gitignored** `rustlings/` directory. When Artem reports finishing a Book chapter or section (e.g. "done with Ch 4", "finished move semantics", or via journal entry), enforce the lockstep loop:
+The repo has a tracked `rustlings/` directory at the root. When Artem reports finishing a Book chapter or section (e.g. "done with Ch 4", "finished move semantics", or via journal entry), enforce the lockstep loop:
 
 1. Look up matching exercise set(s) from the table below.
-2. Verify on disk: `ls rustlings/exercises/<set>/`. If missing (fresh clone has no `rustlings/`), tell Artem: *"Set up rustlings first — see `learning-plan/02-resources.md` for the `/tmp`-staged init."*
+2. Verify on disk: `ls rustlings/exercises/<set>/`. If missing, something's off — tell Artem to check `git status` for accidental deletion.
 3. Instruct: *"Before advancing past Ch X, run `cd rustlings && rustlings watch` and complete `<set>/`."*
-4. Wait. Do **not** let him advance to the next Book chapter until he reports the set passed.
+4. Wait. Do **not** let him advance to the next Book chapter until he reports the set passed. The cursor in `rustlings/.rustlings-state.txt` will advance with each pass.
 
 ### Book chapter ↔ Rustlings exercise set map
 
@@ -142,7 +142,7 @@ The repo has an embedded but **gitignored** `rustlings/` directory. When Artem r
 | 21.4 clippy | `22_clippy` |
 | n/a | `23_conversions` |
 
-`rustlings/` is **not** a Cargo workspace member; lockstep checks are pure filesystem inspection. Don't try to add it to `Cargo.toml` or commit it.
+`rustlings/` is tracked in git but is **not** a Cargo workspace member; lockstep checks are pure filesystem inspection, not Cargo-level. Don't add it to `Cargo.toml` (its exercises are intentionally broken — they'd pollute `cargo test` signal at the repo root).
 
 ## Code-review mode
 

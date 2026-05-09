@@ -54,12 +54,12 @@ Route any "teach me", "review my Rust", "explain this error", "give me a kata", 
 │   └── journal/
 │       ├── _template.md      weekly retro template — copy to `YYYY-Www.md`
 │       └── YYYY-Www.md       weekly log (created lazily when needed)
-├── rustlings/                **gitignored** — `rustlings init` output, lives on disk only
-│   └── exercises/<topic>/    edit + run via `cd rustlings && rustlings watch`
+├── rustlings/                tracked exercise progress; drive via `cd rustlings && rustlings watch`
+│   └── exercises/<topic>/    24 sets, mapped to Book chapters in `.claude/agents/rust-tutor.md`
 └── .claude/agents/rust-tutor.md   the subagent
 ```
 
-**`rustlings/` is intentionally gitignored, not a workspace member.** Reason: a `[workspace] members = ["rustlings"]` entry would point at a missing directory on a fresh clone, breaking `cargo`. Trade-off accepted: rustlings progress doesn't travel with the repo. The agent's lockstep mode (see `.claude/agents/rust-tutor.md`) operates on filesystem presence, not git tracking, so it still works locally.
+**`rustlings/` is tracked but is NOT a Cargo workspace member.** Reason: rustlings exercises are intentionally broken-by-design (you fix them); making it a workspace member would surface those failures in `cargo build`/`cargo test` at the repo root and pollute the signal. Two parallel Cargo packages, no link. Drive your kata code with `cargo`; drive rustlings with `rustlings watch` from inside `rustlings/`. Progress lives in `rustlings/.rustlings-state.txt` — committing it means a fresh clone resumes mid-curriculum.
 
 **Adding a kata** requires three edits, in this order:
 1. Create `src/kyu_<n>/<slug>.rs` with the solution + `#[cfg(test)] mod tests`.
