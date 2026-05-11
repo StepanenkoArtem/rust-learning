@@ -1,5 +1,5 @@
-fn count_by(x: u32, n: u32) -> Vec<u32> {
-   (1..=n).map(|e| x*e).collect()
+pub fn count_by(x: u32, n: u32) -> Vec<u32> {
+    (1..=n).map(|e| x * e).collect()
 }
 
 #[cfg(test)]
